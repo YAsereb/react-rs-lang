@@ -1,4 +1,5 @@
 import React from 'react'
+import Advantage from '../../components/Advantage/Advantage'
 import Footer from '../../components/Footer/Footer'
 import Header from '../../components/Header/Header'
 import './main.scss'
@@ -15,26 +16,30 @@ const MainPage = () => {
           </div>
           <h2 className="article-header">Наши возможности</h2>
           <div className="wrapper">
-            <div className="advantages-item">
-              <p className="advantage-name">Словарь</p>
-              <img src="./assets/img/dictionary2.png" className="advantages-img" alt="dictionary" />
-              <p className="advantage-description">Место, где ты можешь изучать новые слова, добавлять их в список для изучения</p>
-            </div>
-            <div className="advantages-item">
-              <p className="advantage-name">Игра спринт</p>
-              <img src="./assets/img/sprint.png" className="advantages-img" alt="sprint-game" />
-              <p className="advantage-description">Мини-игра, в который ты можешь испытать свои знания на время</p>
-            </div>
-            <div className="advantages-item">
-              <p className="advantage-name">Игра аудиовызов</p>
-              <img src="./assets/img/audio-game4.png" className="advantages-img" alt="audio-game" />
-              <p className="advantage-description">Мини-игра, в которой ты тренируешь свои аудио навыки</p>
-            </div>
-            <div className="advantages-item">
-              <p className="advantage-name">Статистика</p>
-              <img src="./assets/img/statistics1.png" className="advantages-img" alt="statistics" />
-              <p className="advantage-description">Здесь ты можешь увидеть свою статистику</p>
-            </div>
+            <Advantage
+              name='Словарь'
+              imgSrc='./assets/img/dictionary2.png'
+              imgAlt='dictionary'
+              description='Место, где ты можешь изучать новые слова, добавлять их в список для изучения'
+            />
+            <Advantage
+              name='Игра спринт'
+              imgSrc='./assets/img/sprint.png'
+              imgAlt='sprint-game'
+              description='Мини-игра, в который ты можешь испытать свои знания на время'
+            />
+            <Advantage
+              name='Игра аудиовызов'
+              imgSrc='./assets/img/audio-game4.png'
+              imgAlt='audio-game'
+              description='Мини-игра, в которой ты тренируешь свои аудио навыки'
+            />
+            <Advantage
+              name='Статистика'
+              imgSrc='./assets/img/statistics1.png'
+              imgAlt='statistics'
+              description='Здесь ты можешь увидеть свою статистику'
+            />
           </div>
         </article>
         <article className="article">
