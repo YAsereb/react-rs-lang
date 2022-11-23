@@ -1,18 +1,14 @@
 import React from 'react'
+import { IAdvantage } from '../../interfaces'
 
-interface IAdvantageProps {
-  name: string,
-  imgSrc: string,
-  imgAlt: string,
-  description: string
-}
 
-const Advantage = (props: IAdvantageProps) => {
+
+const Advantage = (advantage: IAdvantage) => {
   return (
     <div className="advantages-item">
-      <p className="advantage-name">{props.name}</p>
-      <img src={props.imgSrc} className="advantages-img" alt={props.imgAlt} />
-      <p className="advantage-description">{props.description}</p>
+      <p className="advantage-name">{advantage.name}</p>
+      <img src={advantage.imgSrc} className="advantages-img" alt={advantage.imgAlt} />
+      <p className="advantage-description">{advantage.description}</p>
     </div>
   )
 }
