@@ -1,9 +1,12 @@
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import MainPage from './pages/main/Main';
+import AppRouter from './components/AppRouter';
 
 function App() {
   return (
-    <MainPage ></MainPage>
+    <BrowserRouter>
+      <AppRouter></AppRouter >
+    </BrowserRouter>
   );
 }
 
