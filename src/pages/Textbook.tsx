@@ -7,7 +7,7 @@ const Textbook = () => {
   return (
     <div>
       <Header />
-      <WordCard></WordCard>
+      <WordCard />
       <Footer />
     </div>
   )
