@@ -1,15 +1,18 @@
-import React from 'react'
 import Footer from '../components/Footer/Footer'
 import Header from '../components/Header/Header'
-import WordCard from '../components/WordCard/WordCard'
+import WordCardList from '../components/WordCardList'
+import WordsLevels from '../components/WordsLevels/WordsLevels'
 
 const Textbook = () => {
   return (
-    <div>
+    <>
       <Header />
-      <WordCard />
+      <main className='main'>
+        <WordsLevels />
+        <WordCardList />
+      </main>
       <Footer />
-    </div>
+    </>
   )
 }
 
