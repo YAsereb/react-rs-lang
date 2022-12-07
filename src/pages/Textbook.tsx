@@ -1,6 +1,6 @@
 import Footer from '../components/Footer/Footer'
 import Header from '../components/Header/Header'
-import WordCardList from '../components/WordCardList'
+import WordsList from '../components/WordList/WordsList'
 import WordsLevels from '../components/WordsLevels/WordsLevels'
 
 const Textbook = () => {
@@ -9,7 +9,7 @@ const Textbook = () => {
       <Header />
       <main className='main'>
         <WordsLevels />
-        <WordCardList />
+        <WordsList />
       </main>
       <Footer />
     </>

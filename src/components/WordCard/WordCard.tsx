@@ -1,6 +1,6 @@
 import React from 'react';
-import WordCardHeader from './WordCardHeader';
-import './style.scss';
+import WordCardHeader from '../WordCardHeader/WordCardHeader';
+import './WordCard.scss';
 import { IWord } from '../../types/word';
 
 interface WordProps {
@@ -8,8 +8,10 @@ interface WordProps {
 }
 
 const WordCard = ({ word }: WordProps) => {
+
+
   return (
-    <>
+    <div className='card'>
       <WordCardHeader word={word} />
       <div className="card-content">
         <div className="card-content__block">
@@ -21,8 +23,7 @@ const WordCard = ({ word }: WordProps) => {
         </div>
         <div className="card-content__example">{word.textMeaningTranslate}</div>
       </div>
-    </>
-
+    </div>
   )
 }
 

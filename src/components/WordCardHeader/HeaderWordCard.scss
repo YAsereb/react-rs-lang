@@ -1,0 +1,53 @@
+.card-header {
+  height: 26rem;
+  width: 100%;
+  background-size: cover;
+}
+
+.card-header__overlay {
+  height: 100%;
+  padding: 2rem 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(transparent, rgb(172, 134, 113));
+
+  position: relative;
+}
+
+.card-header__block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: auto;
+
+  h3 {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+}
+
+.card-header__info {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+
+  div {
+    margin-right: 1.5rem;
+  }
+
+  button {
+    background-color: transparent;
+
+    svg {
+      display: block;
+      height: 2rem;
+      width: 2rem;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        fill: #fff;
+      }
+    }
+  }
+}

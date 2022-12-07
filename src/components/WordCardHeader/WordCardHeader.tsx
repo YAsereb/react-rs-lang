@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { IWord } from '../../types/word'
+import './HeaderWordCard.scss'
 
 interface WordCardHeaderProps {
   word: IWord

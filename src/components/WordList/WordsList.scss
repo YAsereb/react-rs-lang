@@ -1,0 +1,59 @@
+.words-list {
+  padding-bottom: 9rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.buttons-block {
+  display: flex;
+
+  button {
+    background-color: transparent;
+
+    svg {
+      display: block;
+      height: 2.5rem;
+      width: 2.5rem;
+      transition: ease 0.3s;
+    }
+
+    &:nth-child(1) {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.add-word__btn {
+  &:hover {
+    fill: #a1ffce;
+  }
+}
+
+.back-word__btn {
+  &:hover {
+    fill: #faffd1;
+  }
+}
+
+.remove-word__btn {
+  &:hover {
+    fill: #de6161;
+  }
+}
+
+.save-word__btn {
+  &:hover {
+    fill: #a770ef;
+  }
+}
+
+.progress-word {
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  padding: 0 0.5rem;
+  font-size: 2rem;
+  background-color: #d9c6f2;
+  border-radius: 0.3rem;
+}
