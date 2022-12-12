@@ -1,11 +1,11 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { routes } from '../Router/Routes'
+import { publicRoutes } from '../Router/Routes'
 
 const AppRouter = () => {
   return (
     <Routes>
-      {routes.map(route =>
+      {publicRoutes.map(route =>
         <Route path={route.path} element={<route.element />} key={route.path} />)}
       <Route path='*' element={<Navigate to='/' />} />
     </Routes>

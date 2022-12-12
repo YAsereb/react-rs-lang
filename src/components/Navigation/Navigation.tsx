@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import svg from '../../assets/svg/header.svg';
 import './Navigation.scss';
 
@@ -35,6 +35,7 @@ const Navigation = () => {
         <NavLink to='/statistic'>
           Statistic
         </NavLink>
+        <Link to='/login'>Sign in</Link>
       </div>
     </nav >
   )
