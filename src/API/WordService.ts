@@ -6,7 +6,12 @@ const baseUrl = axios.defaults.baseURL;
 export default class WordAPI {
   static async getAllWords(group = 0, page = 0) {
 
-    const response = await axios.get<IWord[]>(`${baseUrl}/words?group=${group}&page=${page}`);
+    const response = await axios.get<IWord[]>(`${baseUrl}/words`, {
+      params: {
+        _group: group,
+        _page: page
+      }
+    });
     return response.data
 
   }
