@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { signIn } from '../../API/SingIn';
 import UserService from '../../API/UserService';
 import svg from '../../assets/svg/wordCard.svg';
 import './style.scss';
@@ -6,11 +8,14 @@ import './style.scss';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isAuth, setIsAuth] = useState(false);
 
-  const [isEmailValidate, setIsEmailValidate] = useState(false);
-  const [isPasswordValidate, setIsPasswordValidate] = useState(false);
+  const authButton = useRef(null);
+  const navigate = useNavigate();
 
-  const auth = true;
+  const toggleAuth = () => {
+    setIsAuth(!isAuth);
+  }
 
   const passwordValidate = () => {
     if (password.length < 8) {
@@ -18,27 +23,32 @@ const Login = () => {
     }
   }
 
-  const handleAuth = async (e: React.FormEvent) => {
+  const handleForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(email)
-    console.log(password)
-    UserService.createUsers({ name: email, password });
+    let buttonValue = (authButton.current as unknown as HTMLButtonElement).textContent;
+    if (buttonValue === 'SIGN UP') {
+      passwordValidate()
+      signIn(email, password)
+    } else {
+      UserService.createUsers({ email, password });
+    }
+    setIsAuth(true)
   }
 
   return (
     <div className='authentication-wrapper'>
       <div className='authentication-block'>
-        <button className='close-btn'>
+        <div className='close-btn' onClick={() => navigate(-1)}>
           <svg>
             <use href={`${svg}#delete`}></use>
           </svg>
-        </button>
+        </div>
         <h3 id='authentication-title'>
-          {auth ? 'LOG IN' : 'SIGN UP'}
+          {isAuth ? 'LOG IN' : 'SIGN UP'}
         </h3>
         <form
           className='authentication-form'
-          onSubmit={handleAuth}
+          onSubmit={handleForm}
         >
           <label htmlFor='username'>Email:</label>
           <input
@@ -59,20 +69,21 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button
+          <button ref={authButton}
             id='authentication-btn'
           >
-            {auth ? 'LOG IN' : 'SIGN UP'}
+            {isAuth ? 'LOG IN' : 'SIGN UP'}
           </button>
         </form>
         <div className='authentication-text'>
           <p id='authentication-text'>{
-            auth
+            isAuth
               ? 'Dont have an account?'
               : 'Already have an account?'
           }</p>
-          <span id='change-authentication'>
-            {auth ? 'Sign up' : 'Log in'}</span>
+          <span id='change-authentication' onClick={toggleAuth}>
+            {isAuth ? 'Sign up' : 'Log in'}
+          </span>
         </div>
       </div>
     </div>

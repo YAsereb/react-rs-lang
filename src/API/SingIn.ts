@@ -10,7 +10,7 @@ interface ISignInResponse {
 
 export const signIn = async (email: string, password: string) => {
   try {
-    const response = await axios.post(`${axios}/signin`, { email, password });
+    const response = await axios.post(`/signin`, { email, password });
     const userData: ISignInResponse = response.data;
 
     localStorage.setItem('token', userData.token);
