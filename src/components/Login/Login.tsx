@@ -1,17 +1,20 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../API/SingIn';
 import UserService from '../../API/UserService';
 import svg from '../../assets/svg/wordCard.svg';
+import { AuthContext } from '../../context/context';
 import './style.scss';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAuth, setIsAuth] = useState(false);
 
+  const { isLogin, setIsLogin } = useContext(AuthContext)
+
   const authButton = useRef(null);
-  const navigate = useNavigate();
 
   const toggleAuth = () => {
     setIsAuth(!isAuth);
@@ -38,7 +41,9 @@ const Login = () => {
   return (
     <div className='authentication-wrapper'>
       <div className='authentication-block'>
-        <div className='close-btn' onClick={() => navigate(-1)}>
+        <div className='close-btn'
+        // onClick={() => navigate(-1)}
+        >
           <svg>
             <use href={`${svg}#delete`}></use>
           </svg>

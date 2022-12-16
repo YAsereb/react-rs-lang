@@ -1,5 +1,6 @@
 .navigation {
   width: 100%;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,6 +23,7 @@
 
 .navigation-item {
   display: flex;
+  align-items: center;
 }
 
 .home-button {
@@ -110,20 +112,17 @@
 }
 
 .navigation-auth {
-  margin-left: 2rem;
+  padding: 0.8rem 1.4rem;
+  color: #fff;
+  font-size: 1.6rem;
+  border: 2px solid #fff;
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 
-  a {
-    padding: 0.8rem 1.4rem;
-    color: #fff;
-    font-size: 1.6rem;
-    border: 2px solid #fff;
-    border-radius: 1rem;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-
-    &:hover {
-      color: #cf8bf3;
-      background-color: #fff;
-    }
+  &:hover {
+    color: #cf8bf3;
+    background-color: #fff;
   }
+
 }

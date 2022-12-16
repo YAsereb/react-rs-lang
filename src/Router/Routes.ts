@@ -11,7 +11,6 @@ export const publicRoutes = [
   { path: '/audio-game', element: AudioGame },
   { path: '/sprint-game', element: SprintGame },
   { path: '/statistic', element: Statistic },
-  { path: '/login', element: Login },
 ]
 
 export const privateRoutes = [
@@ -20,5 +19,4 @@ export const privateRoutes = [
   { path: '/audio-game', element: AudioGame },
   { path: '/sprint-game', element: SprintGame },
   { path: '/statistic', element: Statistic },
-  { path: '/login', element: Login },
 ]

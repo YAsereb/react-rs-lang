@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import svg from '../../assets/svg/header.svg';
+import Login from '../Login/Login';
+import MyModal from '../UI/modal/MyModal';
 import './Navigation.scss';
 
 
 const Navigation = () => {
+  const [modal, setModal] = useState(false);
 
   return (
     <nav className='navigation'>
@@ -35,7 +39,10 @@ const Navigation = () => {
         <NavLink to='/statistic'>
           Statistic
         </NavLink>
-        <Link to='/login'>Sign in</Link>
+        <MyModal visible={modal} setVisible={setModal}>
+          <Login />
+        </MyModal>
+        <div className='navigation-auth' onClick={() => setModal(true)}>Login</div>
       </div>
     </nav >
   )
