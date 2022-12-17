@@ -1,19 +1,7 @@
-.authentication-wrapper {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background: #3494e6;
-  background: -webkit-linear-gradient(to right, #ec6ead, #3494e6);
-  background: linear-gradient(to right, #ec6ead, #3494e6);
-  padding: 0 1rem;
-}
-
-.authentication-block {
+.authentication {
   position: relative;
   max-width: 50rem;
-  margin: 5rem auto;
+  margin: 0 auto;
   padding: 14rem 7rem;
   background: linear-gradient(187.08deg,
       #7cdcd6 5.52%,
@@ -28,25 +16,6 @@
     font-size: 3rem;
     color: #ffffff;
     margin-bottom: 1.5rem;
-  }
-}
-
-.close-btn {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  background-color: transparent;
-
-  svg {
-    display: block;
-    width: 2rem;
-    height: 2rem;
-    fill: #fff;
-    transition: ease 0.3s;
-
-    &:hover {
-      fill: #f5c8e6;
-    }
   }
 }
 

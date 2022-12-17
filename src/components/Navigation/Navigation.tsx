@@ -42,7 +42,11 @@ const Navigation = () => {
         <MyModal visible={modal} setVisible={setModal}>
           <Login />
         </MyModal>
-        <div className='navigation-auth' onClick={() => setModal(true)}>Login</div>
+        <div className='navigation-auth'
+          onClick={() => setModal(true)}
+        >
+          Login
+        </div>
       </div>
     </nav >
   )
