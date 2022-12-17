@@ -1,7 +1,6 @@
 import React, { useRef, useState, useContext } from 'react';
 import { signIn } from '../../API/SingIn';
 import UserService from '../../API/UserService';
-import svg from '../../assets/svg/wordCard.svg';
 import { AuthContext } from '../../context/context';
 import './style.scss';
 

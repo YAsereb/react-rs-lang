@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import svg from '../../assets/svg/header.svg';
 import Login from '../Login/Login';
 import MyModal from '../UI/modal/MyModal';
