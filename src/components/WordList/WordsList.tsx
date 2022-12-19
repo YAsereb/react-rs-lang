@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import WordAPI from '../../API/WordService';
-import { IUser } from '../../types/users';
 import { IWord, IWordCard } from '../../types/word';
 import WordCard from '../WordCard/WordCard';
 import './WordsList.scss'

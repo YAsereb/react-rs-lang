@@ -1,5 +1,5 @@
 import React from 'react'
-import { IAdvantage } from '../../interfaces'
+import { IAdvantage } from '../../ourAdvantages'
 
 
 

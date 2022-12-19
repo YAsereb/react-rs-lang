@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import svg from '../../assets/svg/header.svg';
+import { AuthContext } from '../../context/context';
 import Login from '../Login/Login';
 import MyModal from '../UI/modal/MyModal';
 import './Navigation.scss';
@@ -8,6 +9,8 @@ import './Navigation.scss';
 
 const Navigation = () => {
   const [modal, setModal] = useState(false);
+  const { isLogin, setIsLogin } = useContext(AuthContext);
+  let authControll;
 
   return (
     <nav className='navigation'>
@@ -39,14 +42,26 @@ const Navigation = () => {
         <NavLink to='/statistic'>
           Statistic
         </NavLink>
-        <MyModal visible={modal} setVisible={setModal}>
-          <Login />
-        </MyModal>
-        <div className='navigation-auth'
-          onClick={() => setModal(true)}
-        >
-          Login
-        </div>
+
+        {isLogin
+          ? <div className='navigation-auth'
+            onClick={() => setIsLogin(false)}
+          >
+            LOGOUT
+          </div>
+          :
+          <>
+            <MyModal visible={modal} setVisible={setModal}>
+              <Login />
+            </MyModal><div className='navigation-auth'
+              onClick={() => setModal(true)}
+            >
+              LOGIN
+            </div>
+          </>
+        }
+
+
       </div>
     </nav >
   )
