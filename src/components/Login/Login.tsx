@@ -1,23 +1,39 @@
 import { AxiosError } from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import UserService from '../../API/UserService';
 import { AuthContext } from '../../context/context';
 import './style.scss';
 
+interface LoginProps {
+  visible: boolean,
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-const Login = () => {
+const Login = ({ visible, setVisible }: LoginProps) => {
+
   const [email, setEmail] = useState('');
+  const [emailType, setEmailType] = useState('email');
+  const [emailPlaceHolder, setEmailPlaceHolder] = useState('');
+
   const [password, setPassword] = useState('');
-  const [isPasswordValidate, setIsPasswordValidate] = useState(false);
   const [passwordType, setPasswordType] = useState('password');
   const [passwordPlaceHolder, setPasswordPlaceHolder] = useState('');
-  const [formButtonText, setFormButtonText] = useState('SIGN UP')
+
+  const [formButtonText, setFormButtonText] = useState('SIGN UP');
+  const [errorMessage, setErrorMessage] = useState('');
   const [isAuth, setIsAuth] = useState(false);
+
+  let isPasswordValidate = false;
 
   const { isLogin, setIsLogin } = useContext(AuthContext);
 
-  const emailInput = React.useRef<HTMLInputElement>(null);
-  const passwordInput = React.useRef<HTMLInputElement>(null);
+  const emailInput = useRef<HTMLInputElement>(null);
+  const passwordInput = useRef<HTMLInputElement>(null);
+  const submitButton = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    setErrorMessage('');
+  }, [email, password])
 
   const toggleAuth = () => {
     formButtonText === 'SIGN UP' ? setFormButtonText('LOG IN') : setFormButtonText('SIGN UP');
@@ -25,14 +41,15 @@ const Login = () => {
   }
 
   const passwordValidate = () => {
+
     if (password.length < 8) {
-      setIsPasswordValidate(false);
+      isPasswordValidate = false;
       setPassword('');
-      setPasswordPlaceHolder('Password is too short - should be 8 chars minimum!')
       setPasswordType('text');
+      setPasswordPlaceHolder('Password is too short - should be 8 chars minimum!')
       passwordInput.current?.classList.add('auth-error__input');
     }
-    setIsPasswordValidate(true);
+    isPasswordValidate = true;
   }
 
   const handleForm = async (e: React.FormEvent) => {
@@ -44,24 +61,38 @@ const Login = () => {
 
       const responseUser = await UserService.createUsers({ email, password });
 
-      console.log(responseUser);
-
       if (responseUser instanceof AxiosError) {
-        console.log(responseUser);
+        if (responseUser.response?.status === 422) {
+          emailInput.current?.classList.add('auth-error__input');
+          setEmailType('text');
+          setEmail('');
+          setEmailPlaceHolder('Email is invalid');
+        }
+        if (responseUser.response?.status === 417) {
+          setErrorMessage('User with this email exists');
+        }
+      } else {
+        setVisible(false);
+        setIsLogin(true);
       }
-      setIsAuth(true);
-      console.log('login');
 
-    } else if (formButtonText === 'LOGIN' && isPasswordValidate) {
 
-      let responseSignIn = await UserService.signIn(email, password);
-      console.log(responseSignIn);
-      setIsAuth(true);
-      console.log('sign in');
+    } else if (formButtonText === 'LOG IN' && isPasswordValidate) {
 
+      const responseSignIn = await UserService.signIn(email, password);
+
+      if (responseSignIn instanceof AxiosError) {
+        if (responseSignIn.response?.status === 404) {
+          setErrorMessage(`Couldn't find a(an) user with this email`);
+        }
+        if (responseSignIn.response?.status === 403) {
+          setErrorMessage(`Incorrect email or password`);
+        }
+      } else {
+        setVisible(false);
+        setIsLogin(true);
+      }
     }
-
-    console.log('first')
   }
 
   return (
@@ -69,39 +100,41 @@ const Login = () => {
       <h3 id='authentication-title'>
         {formButtonText}
       </h3>
+      <p className={errorMessage ? 'auth-error__title' : 'offscreen'}>{errorMessage}</p>
       <form
         className='authentication-form'
         onSubmit={handleForm}
       >
-        <label htmlFor='username'>Email:
-          <input
-            id='username'
-            type='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            ref={emailInput}
-          />
-        </label>
+        <label htmlFor='email'>Email:</label>
+        <input
+          id='email'
+          type={emailType}
+          value={email}
+          placeholder={emailPlaceHolder}
+          onChange={(e) => {
 
-        <label htmlFor='password'>Password:
-          <input
-            id='password'
-            type={passwordType}
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setPasswordType('password');
-            }}
-            placeholder={passwordPlaceHolder}
-            required
-            ref={passwordInput}
-          />
-        </label>
-
+            setEmail(e.target.value);
+          }
+          }
+          required
+          ref={emailInput}
+        />
+        <label htmlFor='password'>Password:</label>
+        <input
+          id='password'
+          type={passwordType}
+          value={password}
+          onChange={(e) => {
+            setPasswordType('password');
+            setPassword(e.target.value);
+          }}
+          placeholder={passwordPlaceHolder}
+          required
+          ref={passwordInput}
+        />
         <button
-          type='submit'
           id='authentication-btn'
+          ref={submitButton}
         >
           {formButtonText}
         </button>

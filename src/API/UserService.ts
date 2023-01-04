@@ -41,18 +41,14 @@ export default class UserService {
 
       this.signIn(email, password);
 
-      console.log(response.data)
-
       return response.data;
+
     } catch (error) {
 
       if (error instanceof AxiosError) {
-        console.log(error.response?.data)
-        return error.response;
+        return error
       }
-
     }
-
   }
 
   static async updateUser(id: string, email: string, password: string) {
@@ -77,7 +73,7 @@ export default class UserService {
     } catch (error) {
 
       if (error instanceof AxiosError) {
-        return error.response;
+        return error;
       }
 
     }

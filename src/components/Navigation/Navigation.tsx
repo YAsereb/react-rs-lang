@@ -10,7 +10,6 @@ import './Navigation.scss';
 const Navigation = () => {
   const [modal, setModal] = useState(false);
   const { isLogin, setIsLogin } = useContext(AuthContext);
-  let authControll;
 
   return (
     <nav className='navigation'>
@@ -52,7 +51,7 @@ const Navigation = () => {
           :
           <>
             <MyModal visible={modal} setVisible={setModal}>
-              <Login />
+              <Login visible={modal} setVisible={setModal} />
             </MyModal><div className='navigation-auth'
               onClick={() => setModal(true)}
             >

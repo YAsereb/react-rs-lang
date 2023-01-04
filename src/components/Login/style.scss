@@ -99,8 +99,13 @@
 }
 
 .auth-error__title {
+  width: 100%;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   color: #9b5176;
   font-weight: 500;
+}
+
+.offscreen {
+  display: none;
 }
