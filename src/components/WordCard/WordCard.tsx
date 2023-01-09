@@ -6,12 +6,10 @@ import WordCardButtons from '../WordCardButtons/WordCardButtons';
 
 interface WordProps {
   word: IWord,
-
 }
 
 const WordCard = ({ word }: WordProps) => {
   const [isLogin, setIsLogin] = useState(false);
-
 
   return (
     <div className='card'>
