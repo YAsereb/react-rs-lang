@@ -31,7 +31,7 @@ const WordCardHeader = ({ word, isDisabledButton, setDisabledButton }: WordCardH
     audio[2].addEventListener('ended', () => {
       setDisabledButton(false);
     })
-  }, [audio])
+  })
 
   function playAudio() {
     setDisabledButton(true);
