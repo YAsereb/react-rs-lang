@@ -1,7 +1,7 @@
+import { useEffect, useMemo, useRef } from 'react';
+import volumeSVG from '../../assets/svg/wordCard.svg';
 import { IWord, IWordCard } from '../../types/word';
 import './HeaderWordCard.scss';
-import volumeSVG from '../../assets/svg/wordCard.svg'
-import { useRef, useEffect, useState, useMemo } from 'react';
 
 const PATH_TO_FILE = 'https://react-rs-lang-be.onrender.com'
 
@@ -12,8 +12,6 @@ interface WordCardHeaderProps {
 }
 
 const WordCardHeader = ({ word, isDisabledButton, setDisabledButton }: WordCardHeaderProps) => {
-  const [isAudioPlay, setIsAudioPlay] = useState(false);
-
   const soundButton = useRef<HTMLButtonElement>(null);
 
   const audio = useMemo(() => {
@@ -32,14 +30,12 @@ const WordCardHeader = ({ word, isDisabledButton, setDisabledButton }: WordCardH
     audio[1].addEventListener('ended', () => audio[2].play());
     audio[2].addEventListener('ended', () => {
       setDisabledButton(false);
-      setIsAudioPlay(false);
     })
   }, [audio])
 
   function playAudio() {
     setDisabledButton(true);
     audio[0].play();
-    setIsAudioPlay(true);
   }
 
   return (
