@@ -27,7 +27,6 @@ const WordCardHeader = ({ word, isDisabledButton, setDisabledButton }: WordCardH
 
   useEffect(() => {
     audio[0].addEventListener('ended', () => {
-      setDisabledButton(true);
       audio[1].play();
     })
     audio[1].addEventListener('ended', () => audio[2].play());
@@ -38,6 +37,7 @@ const WordCardHeader = ({ word, isDisabledButton, setDisabledButton }: WordCardH
   }, [audio])
 
   function playAudio() {
+    setDisabledButton(true);
     audio[0].play();
     setIsAudioPlay(true);
   }
