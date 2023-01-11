@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import WordCardHeader from '../WordCardHeader/WordCardHeader';
 import './WordCard.scss';
-import { IWord, IWordCard } from '../../types/word';
+import { IWord } from '../../types/word';
 import WordCardButtons from '../WordCardButtons/WordCardButtons';
 
 interface WordProps {
   word: IWord,
+  isDisabledButton: boolean,
+  setDisabledButton: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const WordCard = ({ word }: WordProps) => {
+const WordCard = ({ word, isDisabledButton, setDisabledButton }: WordProps) => {
   const [isLogin, setIsLogin] = useState(false);
 
   return (
     <div className='card'>
-      <WordCardHeader word={word} />
+      <WordCardHeader
+        word={word}
+        isDisabledButton={isDisabledButton}
+        setDisabledButton={setDisabledButton}
+      />
       {isLogin && <WordCardButtons word={word} />}
       <div className="card-content">
         <div className="card-content__block">

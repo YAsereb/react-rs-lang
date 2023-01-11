@@ -7,23 +7,25 @@ import './WordsList.scss'
 const WordsList = () => {
   const [words, setWords] = useState<IWord[]>([]);
   const [userWords, setUserWords] = useState<IWordCard[]>([]);
-
-  const getWords = async () => {
-    const response = await WordAPI.getAllWords(0, 0);
-    setWords(response);
-  }
-
-  // const getAllUserWords = async (id: string) => {
-  //   const response = await WordAPI.getAllUserWords()
-  // }
+  const [isDisabledButton, setDisabledButton] = useState(false);
 
   useEffect(() => {
+    const getWords = async () => {
+      const response = await WordAPI.getAllWords(0, 0);
+      setWords(response);
+    }
     getWords();
   }, [])
 
   return (
     <div className='words-list'>
-      {words.map(word => <WordCard word={word} key={word.id} />)}
+      {words.map(word =>
+        <WordCard
+          word={word}
+          key={word.id}
+          isDisabledButton={isDisabledButton}
+          setDisabledButton={setDisabledButton}
+        />)}
     </div>
   )
 }

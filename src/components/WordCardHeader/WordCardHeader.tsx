@@ -6,11 +6,13 @@ import { useRef, useEffect, useState, useMemo } from 'react';
 const PATH_TO_FILE = 'https://react-rs-lang-be.onrender.com'
 
 interface WordCardHeaderProps {
-  word: IWordCard | IWord
+  word: IWordCard | IWord,
+  isDisabledButton: boolean,
+  setDisabledButton: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const WordCardHeader = ({ word }: WordCardHeaderProps) => {
-  const [disabledButton, setDisabledButton] = useState(false);
+const WordCardHeader = ({ word, isDisabledButton, setDisabledButton }: WordCardHeaderProps) => {
+  const [isAudioPlay, setIsAudioPlay] = useState(false);
 
   const soundButton = useRef<HTMLButtonElement>(null);
 
@@ -25,16 +27,19 @@ const WordCardHeader = ({ word }: WordCardHeaderProps) => {
 
   useEffect(() => {
     audio[0].addEventListener('ended', () => {
-      setDisabledButton(true)
+      setDisabledButton(true);
       audio[1].play();
     })
     audio[1].addEventListener('ended', () => audio[2].play());
-    audio[2].addEventListener('ended', () => setDisabledButton(false));
-
+    audio[2].addEventListener('ended', () => {
+      setDisabledButton(false);
+      setIsAudioPlay(false);
+    })
   }, [audio])
 
   function playAudio() {
     audio[0].play();
+    setIsAudioPlay(true);
   }
 
   return (
@@ -47,7 +52,7 @@ const WordCardHeader = ({ word }: WordCardHeaderProps) => {
           className="sound-word__btn"
           onClick={playAudio}
           ref={soundButton}
-          disabled={disabledButton}
+          disabled={isDisabledButton}
         >
           <svg>
             <use href={`${volumeSVG}#volume`}></use>
