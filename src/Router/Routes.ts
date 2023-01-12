@@ -1,4 +1,3 @@
-import Login from "../components/Login/Login";
 import AudioGame from "../pages/AudioGame";
 import MainPage from "../pages/main/Main";
 import SprintGame from "../pages/SprintGame";

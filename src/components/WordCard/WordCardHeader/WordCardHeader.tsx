@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
-import volumeSVG from '../../assets/svg/wordCard.svg';
-import { IWord, IWordCard } from '../../types/word';
+import volumeSVG from '../../../assets/svg/wordCard.svg';
+import { IWord, IWordCard } from '../../../types/word';
 import './HeaderWordCard.scss';
 
 const PATH_TO_FILE = 'https://react-rs-lang-be.onrender.com'
@@ -12,8 +12,8 @@ interface WordCardHeaderProps {
 }
 
 const WordCardHeader = ({ word, isDisabledButton, setDisabledButton }: WordCardHeaderProps) => {
-  const soundButton = useRef<HTMLButtonElement>(null);
 
+  const soundButton = useRef<HTMLButtonElement>(null);
   const audio = useMemo(() => {
     return [
       new Audio(`${PATH_TO_FILE}/${word.audio}`),

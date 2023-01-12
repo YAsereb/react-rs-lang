@@ -6,32 +6,6 @@
   background: rgb(172, 134, 113);
 }
 
-.card-content {
-  padding: 1rem 1.5rem 2rem;
-  font-size: 1.6rem;
-}
-
-.card-content__block {
-  text-align: right;
-
-  &:nth-child(1) {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #000;
-  }
-
-  &:nth-child(2) {
-    padding-top: 1.5rem;
-  }
-}
-
-.card-content__example {
-  text-align: right;
-
-  &:nth-child(1) {
-    margin-bottom: 0.5rem;
-  }
-}
-
 .hard-word__card {
   background: #fff355;
 

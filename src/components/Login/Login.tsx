@@ -25,7 +25,7 @@ const Login = ({ visible, setVisible }: LoginProps) => {
 
   let isPasswordValidate = false;
 
-  const { isLogin, setIsLogin } = useContext(AuthContext);
+  const { setIsLogin } = useContext(AuthContext);
 
   const emailInput = useRef<HTMLInputElement>(null);
   const passwordInput = useRef<HTMLInputElement>(null);

@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import WordAPI from '../../API/WordService';
-import { IWord, IWordCard } from '../../types/word';
+import { IWord } from '../../types/word';
 import WordCard from '../WordCard/WordCard';
-import './WordsList.scss'
+import WordCardButtons from '../WordCard/WordCardButtons/WordCardButtons';
+import WordCardHeader from '../WordCard/WordCardHeader/WordCardHeader';
+import WordContent from '../WordCard/WordContent/WordContent';
+import './WordsList.scss';
 
 const WordsList = () => {
   const [words, setWords] = useState<IWord[]>([]);
-  const [userWords, setUserWords] = useState<IWordCard[]>([]);
+  // const [userWords, setUserWords] = useState<IWordCard[]>([]);
   const [isDisabledButton, setDisabledButton] = useState(false);
 
   useEffect(() => {
@@ -15,17 +18,22 @@ const WordsList = () => {
       setWords(response);
     }
     getWords();
-  }, [])
+  }, []);
 
   return (
     <div className='words-list'>
       {words.map(word =>
-        <WordCard
-          word={word}
-          key={word.id}
-          isDisabledButton={isDisabledButton}
-          setDisabledButton={setDisabledButton}
-        />)}
+        <WordCard key={word.id}>
+          <WordCardHeader
+            word={word}
+            isDisabledButton={isDisabledButton}
+            setDisabledButton={setDisabledButton}
+          />
+          <WordCardButtons word={word} />
+          <WordContent
+            word={word}
+          />
+        </WordCard>)}
     </div>
   )
 }
