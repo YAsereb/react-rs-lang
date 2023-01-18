@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import svg from '../../assets/svg/header.svg';
 import { AuthContext } from '../../context/context';
-import Login from '../Login/Login';
+import Authentication from '../Auth/Auth';
 import MyModal from '../UI/modal/MyModal';
 import './Navigation.scss';
 
@@ -10,6 +10,13 @@ import './Navigation.scss';
 const Navigation = () => {
   const [modal, setModal] = useState(false);
   const { isLogin, setIsLogin } = useContext(AuthContext);
+
+  const logout = () => {
+    setIsLogin(false);
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userId');
+  }
 
   return (
     <nav className='navigation'>
@@ -44,22 +51,22 @@ const Navigation = () => {
 
         {isLogin
           ? <div className='navigation-auth'
-            onClick={() => setIsLogin(false)}
+            onClick={logout}
           >
             LOGOUT
           </div>
           :
           <>
             <MyModal visible={modal} setVisible={setModal}>
-              <Login visible={modal} setVisible={setModal} />
-            </MyModal><div className='navigation-auth'
+              <Authentication visible={modal} setVisible={setModal} />
+            </MyModal>
+            <div className='navigation-auth'
               onClick={() => setModal(true)}
             >
               LOGIN
             </div>
           </>
         }
-
 
       </div>
     </nav >

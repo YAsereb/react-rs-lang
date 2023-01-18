@@ -9,7 +9,7 @@ interface LoginProps {
   setVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Login = ({ visible, setVisible }: LoginProps) => {
+const Authentication = ({ visible, setVisible }: LoginProps) => {
 
   const [email, setEmail] = useState('');
   const [emailType, setEmailType] = useState('email');
@@ -46,7 +46,7 @@ const Login = ({ visible, setVisible }: LoginProps) => {
       isPasswordValidate = false;
       setPassword('');
       setPasswordType('text');
-      setPasswordPlaceHolder('Password is too short - should be 8 chars minimum!')
+      setPasswordPlaceHolder('Password is too short - should be 8 chars minimum!');
       passwordInput.current?.classList.add('auth-error__input');
     }
     isPasswordValidate = true;
@@ -112,7 +112,6 @@ const Login = ({ visible, setVisible }: LoginProps) => {
           value={email}
           placeholder={emailPlaceHolder}
           onChange={(e) => {
-
             setEmail(e.target.value);
           }
           }
@@ -153,4 +152,4 @@ const Login = ({ visible, setVisible }: LoginProps) => {
   )
 }
 
-export default Login
+export default Authentication

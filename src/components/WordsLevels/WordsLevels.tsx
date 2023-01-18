@@ -2,9 +2,22 @@ import React from 'react'
 import './style.scss'
 
 const WordsLevels = () => {
+
+  const getWordsLevel = (e: React.MouseEvent) => {
+    const node = e.target as HTMLElement;
+    const parentNode = node.parentNode as HTMLElement;
+    if (node.hasAttribute('data-group')) {
+      console.log(node.getAttribute('data-group'));
+    }
+    if (parentNode.hasAttribute('data-group')) {
+      console.log(parentNode.getAttribute('data-group'));
+    }
+
+  }
+
   return (
     <>
-      <div className="levels-list">
+      <div className="levels-list" onClick={getWordsLevel}>
         <div className="level-card" data-group="0">
           <div className="level-card__left">Easy</div>
           <div className="level-card__right">A1</div>
