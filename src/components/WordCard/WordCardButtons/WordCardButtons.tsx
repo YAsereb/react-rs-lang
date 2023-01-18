@@ -7,10 +7,8 @@ interface WordCardHeaderProps {
   word: IWord
 }
 
-const WordCardButtons = ({ word
-}: WordCardHeaderProps) => {
+const WordCardButtons = ({ word }: WordCardHeaderProps) => {
   const { isLogin } = useContext(AuthContext);
-  console.log(isLogin);
 
   return (
     <>
