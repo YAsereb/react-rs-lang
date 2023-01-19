@@ -1,16 +1,24 @@
 import React from 'react'
 import './style.scss'
 
-const WordsLevels = () => {
+interface WordsLevelsProps {
+  group: number,
+  setGroup: React.Dispatch<React.SetStateAction<number>>
+}
+
+const WordsLevels = ({ setGroup }: WordsLevelsProps) => {
 
   const getWordsLevel = (e: React.MouseEvent) => {
     const node = e.target as HTMLElement;
     const parentNode = node.parentNode as HTMLElement;
+    let currentGroup;
     if (node.hasAttribute('data-group')) {
-      console.log(node.getAttribute('data-group'));
+      currentGroup = Number(node.getAttribute('data-group'));
+      setGroup(currentGroup);
     }
     if (parentNode.hasAttribute('data-group')) {
-      console.log(parentNode.getAttribute('data-group'));
+      currentGroup = Number(parentNode.getAttribute('data-group'));
+      setGroup(currentGroup);
     }
 
   }

@@ -7,18 +7,23 @@ import WordCardHeader from '../WordCard/WordCardHeader/WordCardHeader';
 import WordContent from '../WordCard/WordContent/WordContent';
 import './WordsList.scss';
 
-const WordsList = () => {
+interface WordsListProps {
+  group: number,
+  page: number
+}
+
+const WordsList = ({ group, page }: WordsListProps) => {
   const [words, setWords] = useState<IWord[]>([]);
   // const [userWords, setUserWords] = useState<IWordCard[]>([]);
   const [isDisabledButton, setDisabledButton] = useState(false);
 
   useEffect(() => {
     const getWords = async () => {
-      const response = await WordAPI.getAllWords(0, 0);
+      const response = await WordAPI.getAllWords(group, page);
       setWords(response);
     }
     getWords();
-  }, []);
+  }, [group, page]);
 
   return (
     <div className='words-list'>

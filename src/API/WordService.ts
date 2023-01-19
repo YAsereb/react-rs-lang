@@ -7,8 +7,8 @@ export default class WordAPI {
 
     const response = await axios.get<IWord[]>(`/words`, {
       params: {
-        _group: group,
-        _page: page
+        group: group,
+        page: page
       }
     });
     return response.data
