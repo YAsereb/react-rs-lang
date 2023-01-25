@@ -1,12 +1,13 @@
 import React from 'react'
-import './style.scss'
+import './WordLevels.scss'
 
 interface WordsLevelsProps {
   group: number,
-  setGroup: React.Dispatch<React.SetStateAction<number>>
+  setGroup: React.Dispatch<React.SetStateAction<number>>,
+  setPage: React.Dispatch<React.SetStateAction<number>>
 }
 
-const WordsLevels = ({ setGroup }: WordsLevelsProps) => {
+const WordsLevels = ({ setGroup, setPage }: WordsLevelsProps) => {
 
   const getWordsLevel = (e: React.MouseEvent) => {
     const node = e.target as HTMLElement;
@@ -20,7 +21,7 @@ const WordsLevels = ({ setGroup }: WordsLevelsProps) => {
       currentGroup = Number(parentNode.getAttribute('data-group'));
       setGroup(currentGroup);
     }
-
+    setPage(0);
   }
 
   return (
