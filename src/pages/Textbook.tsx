@@ -11,6 +11,7 @@ const Textbook = () => {
   const COUNT_PAGES = 30;
   const WORDS_ON_PAGE = 20;
 
+
   return (
     <>
       <Header />

@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { IWord } from "../types/word";
 
 import axios from "./baseUrl";
@@ -32,8 +33,36 @@ export default class WordAPI {
           Accept: 'application/json',
         }
       })
+      return response;
     } catch (error) {
+      if (error instanceof AxiosError) {
+        return error;
+      }
+    }
+  }
 
+  static async getAggregatedWords(
+    userId: string,
+    filter: string,
+    limit = 20,
+    token: string) {
+    try {
+      const response = await axios.get(`/users/${userId}/aggregatedWords`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+          },
+          params: {
+            filter: filter,
+            limit: limit
+          }
+        }
+      )
+      console.log(response.data);
+      return response.data
+    } catch (error) {
+      console.log(error)
     }
   }
 }

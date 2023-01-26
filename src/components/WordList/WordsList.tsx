@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import WordAPI from '../../API/WordService';
+import { AuthContext } from '../../context/context';
 import { IWord } from '../../types/word';
 import WordCard from '../WordCard/WordCard';
 import WordCardButtons from '../WordCard/WordCardButtons/WordCardButtons';
@@ -14,16 +15,29 @@ interface WordsListProps {
 
 const WordsList = ({ group, page }: WordsListProps) => {
   const [words, setWords] = useState<IWord[]>([]);
-  // const [userWords, setUserWords] = useState<IWordCard[]>([]);
   const [isDisabledButton, setDisabledButton] = useState(false);
+  const { isLogin } = useContext(AuthContext);
 
   useEffect(() => {
     const getWords = async () => {
-      const response = await WordAPI.getAllWords(group, page);
+      let response;
+      if (isLogin) {
+        const userId = localStorage.getItem('userId') as string;
+        const token = localStorage.getItem('token') as string;
+        const filter = JSON.stringify({
+          $and: [
+            { page: page },
+            { group: group }
+          ]
+        })
+        response = await WordAPI.getAggregatedWords(userId, filter, 20, token);
+      }
+      response = await WordAPI.getAllWords(group, page);
+
       setWords(response);
     }
     getWords();
-  }, [group, page]);
+  }, [group, page, isLogin]);
 
   return (
     <div className='words-list'>
