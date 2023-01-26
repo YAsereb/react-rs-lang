@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import WordAPI from '../../API/WordService';
 import { AuthContext } from '../../context/context';
-import { IWord } from '../../types/word';
+import { IWordCard } from '../../types/word';
 import WordCard from '../WordCard/WordCard';
 import WordCardButtons from '../WordCard/WordCardButtons/WordCardButtons';
 import WordCardHeader from '../WordCard/WordCardHeader/WordCardHeader';
@@ -14,7 +14,7 @@ interface WordsListProps {
 }
 
 const WordsList = ({ group, page }: WordsListProps) => {
-  const [words, setWords] = useState<IWord[]>([]);
+  const [words, setWords] = useState<IWordCard[]>([]);
   const [isDisabledButton, setDisabledButton] = useState(false);
   const { isLogin } = useContext(AuthContext);
 
@@ -26,14 +26,14 @@ const WordsList = ({ group, page }: WordsListProps) => {
         const token = localStorage.getItem('token') as string;
         const filter = JSON.stringify({
           $and: [
-            { page: page },
+            { page: page - 1 },
             { group: group }
           ]
         })
         response = await WordAPI.getAggregatedWords(userId, filter, 20, token);
+      } else {
+        response = await WordAPI.getAllWords(group, page);
       }
-      response = await WordAPI.getAllWords(group, page);
-
       setWords(response);
     }
     getWords();
@@ -42,7 +42,7 @@ const WordsList = ({ group, page }: WordsListProps) => {
   return (
     <div className='words-list'>
       {words.map(word =>
-        <WordCard key={word.id}>
+        <WordCard key={word.id || word._id}>
           <WordCardHeader
             word={word}
             isDisabledButton={isDisabledButton}

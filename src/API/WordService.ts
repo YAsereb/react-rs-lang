@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { IWord } from "../types/word";
+import { IWord, IWordCard } from "../types/word";
 
 import axios from "./baseUrl";
 
@@ -45,7 +45,9 @@ export default class WordAPI {
     userId: string,
     filter: string,
     limit = 20,
-    token: string) {
+    token: string)
+  // : Promise<IWordCard[]>
+  {
     try {
       const response = await axios.get(`/users/${userId}/aggregatedWords`,
         {
@@ -55,14 +57,19 @@ export default class WordAPI {
           },
           params: {
             filter: filter,
-            limit: limit
+            wordsPerPage: limit
           }
         }
       )
-      console.log(response.data);
-      return response.data
+      console.log(response.data[0].paginatedResults);
+      return response.data[0].paginatedResults
     } catch (error) {
       console.log(error)
     }
   }
 }
+/*
+/users/63c814e65da52d0034266e50/aggregatedWords?filter={"$and":[{"page":0},{"group":0},{"$or":[{"userWord.optional.isLearned":true},{"userWord.optional.isLearned":false},{"userWord.optional.isLearned":null}]},{"$or":[{"userWord":null},{"userWord.difficulty":"hard"},{"userWord.difficulty":"easy"}]}]}&wordsPerPage=20
+
+/users/63c814e65da52d0034266e50/aggregatedWords?filter={"$and":[{"page":0},{"group":0}]}&limit=20
+*/
