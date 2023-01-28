@@ -8,40 +8,28 @@
     border-radius: 4rem;
     border: 2px solid #3f51b5;
 
-    li {
+    .pagination__item {
       height: 45px;
       width: 45px;
       line-height: 45px;
-      text-align: center;
       margin: 0 0.5rem;
+      text-align: center;
       font-size: 2rem;
       font-weight: 500;
       border-radius: 50%;
+
       cursor: pointer;
       transition: all 0.3s ease;
+
+      &:hover {
+        background: #3f51b5;
+        color: #fff;
+      }
     }
   }
 }
 
-.pagination__button {
-  width: auto;
-  padding: 0 2rem;
-  border-radius: 4rem;
-
-  &:hover {
-    background: #3f51b5;
-    color: #fff;
-  }
-}
-
-.pagination__numb {
-  &:hover {
-    background: #3f51b5;
-    color: #fff;
-  }
-}
-
-.pagination ul li .dots {
+.dots {
   font-size: 2.4rem;
   cursor: default;
 }

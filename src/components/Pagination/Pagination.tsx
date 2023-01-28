@@ -45,7 +45,7 @@ const Pagination = (props: PaginationProps) => {
     <div className="pagination">
       <ul className="pagination__list">
         <li
-          className="pagination__button"
+          className="pagination__item"
           onClick={prevPage}
         >
           Prev
@@ -55,7 +55,7 @@ const Pagination = (props: PaginationProps) => {
             if (pageNumber === DOTS) {
               return (
                 <li
-                  className='pagination__numb dots'
+                  className='pagination__item dots'
                   key={index}
                 >
                   &#8230;
@@ -65,7 +65,7 @@ const Pagination = (props: PaginationProps) => {
             if (pageNumber === currentPage) {
               return (
                 <li
-                  className='pagination__numb active-page'
+                  className='pagination__item active-page'
                   key={index}
                 >
                   {pageNumber}
@@ -74,7 +74,7 @@ const Pagination = (props: PaginationProps) => {
             }
             return (
               <li
-                className='pagination__numb'
+                className='pagination__item'
                 onClick={changePage}
                 data-page={pageNumber}
                 key={index}
@@ -85,7 +85,7 @@ const Pagination = (props: PaginationProps) => {
           })
         }
         <li
-          className="pagination__button"
+          className="pagination__item"
           onClick={nextPage}
         >
           Next
